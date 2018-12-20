@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        td:first-child {
+            width: 300px;
+        }
+    </style>
+
+</head>
+<body>
+
+<img src="../img/logo.png" width="300"/>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/">
+        <table>
+            <tr>
+                <td>Dateien zum Hochladen auswählen:</td>
+                <td><input type="file" name="file" multiple accept="application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Hochladen"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<form action="/api/preview" method="GET">
+    <table>
+        <tr>
+            <td>Vorschau erzeugen:</td>
+            <td><input id="preview" type="submit" value="Vorschau" style="display: block;" ></td>
+        </tr>
+    </table>
+</form>
+
+<form action="/api/mail/sendwithoutpreview" method="POST">
+    <table>
+        <tr>
+            <td>Email ohne Vorschau senden:</td>
+            <td><input type="submit" value="Senden ohne Vorschau" style="display: block;"></td>
+        </tr>
+    </table>
+</form>
+<br/>
+
+<div th:if="${files}">
+    <ul><p><b><u>Hochgeladene Dateien: </u></b></p>
+        <li th:each="file : ${files}">
+            <a th:href="${file}" th:text="${file}"/>
+        </li>
+    </ul>
+    <form action="/api/deletefiles" method="DELETE">
+        <table>
+            <tr>
+                <td>Hochgeladene Dateien löschen:</td>
+                <td><input type="submit" value="Alle löschen" style="display: block;"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:if="${message}">
+    <h3 th:text="${message}"/>
+</div>
+</body>
+</html>

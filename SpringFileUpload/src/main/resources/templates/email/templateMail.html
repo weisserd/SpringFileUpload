@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        img {
+            max-width: 100%;
+            min-width: 40%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<img th:src="@{header}"/>
+<img src="../resources/static/img/header.png"/>
+<img src="../static/img/header.png"/>
+<div>
+    <p>Hallo zusammen,</p>
+    <p></p>
+    <p>wir freuen uns, Euch unsere aktuellen <b>Newbies</b> vorzustellen:</p>
+    <p></p>
+    <p><u><b>Seit <i th:text="${date}"/> unterstützen uns: </b></u></p>
+</div>
+
+<div th:utext="${body}">
+
+</div>
+<br/>
+<br/>
+<div>
+    <p> Wir bedanken uns recht herzlich für die erfolgreiche und tolle Zusammenarbeit mit Euch.</p>
+    <p>Für Eure Zukunft wünschen wir Euch alles erdenklich Gute!</p>
+    <p>Herzliche Grüße!</p>
+    <br/>
+    <p>Euer HR Team</p>
+</div>
+</body>
+</html>

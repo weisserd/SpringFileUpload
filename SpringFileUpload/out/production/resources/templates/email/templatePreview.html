@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../script/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles/template.css" media="screen"/>
+
+</head>
+<body>
+
+<div>
+    <p>Hallo zusammen,</p>
+    <p></p>
+    <p>wir freuen uns, Euch unsere aktuellen <b>Newbies</b> vorzustellen:</p>
+    <p></p>
+    <p><u><b>Seit <i th:text="${date}"/> unterstützen uns: </b></u></p>
+</div>
+
+
+<div id="content">
+    <div th:each="document, iterStat : ${documentList}">
+        <table contenteditable="true">
+            <tr rowspan="3">
+                <td>
+                    <label for="file-input" class="input-label">
+                        <img th:id="${iterStat.count}" src="../img/test.jpg" width="250" height="auto"
+                             onclick="setId(id)"/>
+                        <input type="file" id="file-input" accept="image/x-png,image/gif,image/jpeg">
+                    </label>
+
+                </td>
+                <td valign="top">
+                    <p><b><span th:text="${document.getDetails().getVorname()}"> Vorname </span>
+                        <span th:text="${document.getDetails().getNachname()}"> Nachname </span></b> - <span
+                            th:text="${document.getDetails().getPosition()}"> Position </span>
+                    </p>
+                    <p><span th:text="${document.getDetails().getTeam()}"> Team </span> - <span
+                            th:text="${document.getDetails().getSupervisor()}"> Führungskraft </span></p>
+                    <p><span th:text="${document.getDetails().getText()}"> Text für Newbie-Email </span></p>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    </div>
+    <br/>
+    <br/>
+    <div contenteditable="true"><b> <u>Austritte im <span th:text="${datebefore}"> </span>: </u> </b><br/>
+        <p>Vorname Nachname – Position (Division/Deptartment)</p>
+    </div>
+</div>
+<div>
+    </br>
+    <p>Wir bedanken uns recht herzlich für die erfolgreiche und tolle Zusammenarbeit mit Euch.</p>
+    <p>Für Eure Zukunft wünschen wir Euch alles erdenklich Gute!</p>
+    <p>Herzliche Grüße!</p>
+    <br/>
+    <p>Euer HR Team</p>
+</div>
+<table>
+    <tr>
+        <td>
+            <button id="save" onclick="createJson()">Änderungen speichern</button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
